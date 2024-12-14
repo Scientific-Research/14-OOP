@@ -90,4 +90,9 @@ console.log(Person.prototype.isPrototypeOf(Person)); // false
 
 // NOTE: THE BEST NAME OF prototype is suggested from Jonas is: .prototypeOfLinkedObjects => when we take a look at this statement: Person.prototype.isPrototypeOf(Person) with this suugested name, we understand why it is False => It is false because the Person is not the prototype of linked objects, the linked objexts here are like jonas, matilda, ... and NOT the Person. Therefore, we get the True answer for jonas and matilda and False for Person!
 
+Person.prototype.species = "Homo Sapines";
+console.log(jonas.species, matilda.species);
 
+console.log(jonas.hasOwnProperty("firstName")); // true => firstName and lastName are direct properties of jonas Object, that's why the answer is true!
+
+console.log(jonas.hasOwnProperty("species")); // false => this is not a direct property in jonas Object, rather, this is a prototype property in Person object(an indirect property)
