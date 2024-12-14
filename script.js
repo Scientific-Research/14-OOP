@@ -23,9 +23,9 @@ const Person = function (firstName, birthYear) {
   // WE create a function and then assign it to the this.calcAge property, therefore, this property would be a Method in this object hereafter!
 
   // NEVER DO THIS => NEVER CREATE A METHOD INSIDE A CONSTRUCTOR FUNCTION: Because when we have 1000 or 10000 instances created from this methods which means 1000 or 10000 copies from this method which bring doen the performance of our object and overall Our code => That's why we will use Prototype in JS!
-  this.calcAge = function () {
-    console.log(2037 - this.birthYear);
-  };
+  // this.calcAge = function () {
+  //   console.log(2037 - this.birthYear);
+  // };
 };
 
 // As said already, the only difference between Regular Function and Constructor Function is: we have to call a Constructor Function with new keyword BUT IN A REGULAR FUNCTION, WE NEED TO CALL A FUNCTION WITH ITS OWN NAME AND WITHOUT new Keyword!
@@ -56,3 +56,20 @@ console.log(jonas instanceof Person); // true
 
 const jay = "Jay";
 console.log(jay instanceof Person); // false => because we didn't created this variable(instance) using any Constructor Function!
+
+console.log("----------------------Prototypes in JS-------------------------");
+
+// Every function in JS has automatically a property called prototype and Every object which is produced using constructor function has access to this Prototype:
+
+console.log(Person.prototype);
+
+// AS WE CAN SEE, BECAUSE I USE THE prototype here, we can write the calcAge method outside of the Person object => it means here:
+Person.prototype.calcAge = function () {
+  console.log(2037 - this.birthYear); // 46
+};
+
+// And now, all the instances like jonas, matilda and jack that we already created, have access to all property and methods which were created by Person object using Constructor function:
+
+console.log(jonas.firstName); // Jonas
+console.log(jonas.birthYear); // 1991
+jonas.calcAge();
