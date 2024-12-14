@@ -64,12 +64,30 @@ console.log("----------------------Prototypes in JS-------------------------");
 console.log(Person.prototype);
 
 // AS WE CAN SEE, BECAUSE I USE THE prototype here, we can write the calcAge method outside of the Person object => it means here:
+// HERE WE WILL HAVE ONLY ONE COPY OF THIS METHOD AND EVERY OBJECT USES THIS METHOD AGAIN AND AGAIN BUT WILL NOT COPY IT 1000 TIMES WHEN WE CREATE 1000 OBJECTS, ONLY ONE METHOD AND REUSE IT SEVERAL TIMES AS LONG AS THE NUMBERS OF OUR OBJECTS!
 Person.prototype.calcAge = function () {
-  console.log(2037 - this.birthYear); // 46
+  console.log(2037 - this.birthYear); // 46 , 20
+  // this keyword here sets to the object which calls the method! if it is jonas, this keyword sets to the jonas and so on...
 };
 
 // And now, all the instances like jonas, matilda and jack that we already created, have access to all property and methods which were created by Person object using Constructor function:
 
 console.log(jonas.firstName); // Jonas
 console.log(jonas.birthYear); // 1991
-jonas.calcAge();
+jonas.calcAge(); // 46
+
+console.log(jonas); // Person {firstName: 'Jonas', birthYear: 1991}
+// AS WE CAN SEE, the jonas doesn't include the calcAge() method, BUT BECAUSE OF PROTOTYPE, WE HAVE ACCESS TO THE calcAge METHOD TOO!
+matilda.calcAge(); // 20
+
+// TO GET THE PROTOTYPE OF Jonas Object:
+console.log(jonas.__proto__); // {calcAge: ƒ}
+console.log(jonas.__proto__ === Person.prototype); // true
+
+console.log(Person.prototype.isPrototypeOf(jonas)); // true
+console.log(Person.prototype.isPrototypeOf(matilda)); // true
+console.log(Person.prototype.isPrototypeOf(Person)); // false
+
+// NOTE: THE BEST NAME OF prototype is suggested from Jonas is: .prototypeOfLinkedObjects => when we take a look at this statement: Person.prototype.isPrototypeOf(Person) with this suugested name, we understand why it is False => It is false because the Person is not the prototype of linked objects, the linked objexts here are like jonas, matilda, ... and NOT the Person. Therefore, we get the True answer for jonas and matilda and False for Person!
+
+
