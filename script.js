@@ -154,3 +154,5 @@ console.dir(h1);
 
 // and that's why we can call the methods on the functions, because functions are objects and objects have prototypes and in this case => function prototypes such as apply, bind and call!
 console.dir((x) => x + 1);
+
+// NOTE: WE HAVE PROTOTYPE ON THE OBJECTS AND BECAUSE OF ARRAYS AND FUNCTIONS ARE OBJECT TOO AND OBJECTS HAVE THE PROTOTYPE, THEREFOR, WE CAN CALL THE METHODS ON THE FUNCTIONS AND THE ARRAYS!
