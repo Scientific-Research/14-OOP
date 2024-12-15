@@ -138,3 +138,15 @@ Array.prototype.unique = function () {
 };
 
 console.log(arr.unique()); // (4) [3, 6, 5, 9]
+
+// NOTE: BUT TOTALLY IS NOT A GOOD IDEA TO USE THIS CUSTOMIZED PROTOTYPE PROPERTY
+
+// Let's take a look at h1 DOM Element:
+const h1 = document.querySelector("h1");
+
+console.dir(h1);
+// We see a huge Prototype Chain here:
+// [[Prototype]]: HTMLHeadingElement => [[Prototype]]: HTMLElement => [[Prototype]]: Element =>
+// [[Prototype]]: Node => [[Prototype]]: EventTarget => [[Prototype]]: Object
+
+console.dir((x) => x + 1);
