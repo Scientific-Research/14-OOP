@@ -149,4 +149,8 @@ console.dir(h1);
 // [[Prototype]]: HTMLHeadingElement => [[Prototype]]: HTMLElement => [[Prototype]]: Element =>
 // [[Prototype]]: Node => [[Prototype]]: EventTarget => [[Prototype]]: Object
 
+// Let's just have some random functions:
+// The function itself is an object and therefore it has a prototype and this prototype contains the methods which we have use already on the functions such as apply, bind and call!
+
+// and that's why we can call the methods on the functions, because functions are objects and objects have prototypes and in this case => function prototypes such as apply, bind and call!
 console.dir((x) => x + 1);
