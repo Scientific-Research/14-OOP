@@ -96,3 +96,16 @@ console.log(jonas.species, matilda.species);
 console.log(jonas.hasOwnProperty("firstName")); // true => firstName and lastName are direct properties of jonas Object, that's why the answer is true!
 
 console.log(jonas.hasOwnProperty("species")); // false => this is not a direct property in jonas Object, rather, this is a prototype property in Person object(an indirect property)
+
+console.log("-------------Prototypal Inheritance on Built-In Objects--------");
+
+console.log(jonas.__proto__); // {species: 'Homo Sapines', calcAge: ƒ}
+// This is the prototype of Jonas which is prototype of Person that we had already as following:
+console.log(jonas.__proto__ === Person.prototype); // true
+
+// NOTE: Object.prototype (top of prototype chain)
+// When we move up in Prototype chain:
+console.log(jonas.__proto__.__proto__); // => Prototype property of object and actually the hasOwnProperty is there in this Object!
+
+// and Let's us to go one step further
+console.log(jonas.__proto__.__proto__.__proto__); // null because Object.prototype is usually the top of the scope chain!
