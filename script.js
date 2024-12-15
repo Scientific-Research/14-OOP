@@ -115,10 +115,26 @@ console.log(Person.prototype.constructor); // we get the constructor function it
 console.dir(Person.prototype.constructor); // with dir() instead of log(), we can see the Person Object directly!
 
 // PROTOTYPE OF AN ARRAY:
-const arr = [3, 6, 4, 5, 6, 9, 3]; // new Array === []
+const arr = [3, 6, 6, 5, 6, 9, 9]; // new Array === []
 console.log(arr.__proto__); // we see all the methods that we had already like filter, fill, every, find, findIndex, Reduce, ...
 // THIS IS THE REASON, WHY ARRAYS GET ACCESS TO ALL OF THESE METHODS, BECAUSE EACH ARRAY DOESN'T CONTAIN ALL OF THESE METHODS, BUT INSTEAD, EACH ARRAY WILL INHERIT THESE METHODS FROM ITS PROTOTYPE!
 
 console.log(arr.__proto__ === Array.prototype); // true, Array is constructor function of an array!
 
 console.log(arr.__proto__.__proto__); // We have now the object property with all the methods which are available for object!
+
+// LET's TAKE THIS ONE STEP FURTHER:
+// We know at this point that, any Array inherits all their methods from its prototype
+// WE CAN USE THIS KNOWLEDGE TO EXTEND THE FUNCTIONALITY OF ARRAYS EVEN FURTHER:
+
+// We can add any new method to this prototype property of Array Constructor and all the arrays will then inherited this method => then we can call this method on every array that we want:
+Array.prototype.unique = function () {
+  // To get the unique numbers in an array:
+  // SET GIVES US THE UNIQUE VALUES IN AN ARRAY:
+  return [...new Set(this)]; // this keyword is the array(arr) on which this method would be called!
+
+  // OR THE FOLLOWING => Both have the same Result!
+  // return [...new Set(arr)];
+};
+
+console.log(arr.unique()); // (4) [3, 6, 5, 9]
