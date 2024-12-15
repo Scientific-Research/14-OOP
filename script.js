@@ -109,3 +109,16 @@ console.log(jonas.__proto__.__proto__); // => Prototype property of object and a
 
 // and Let's us to go one step further
 console.log(jonas.__proto__.__proto__.__proto__); // null because Object.prototype is usually the top of the scope chain!
+
+console.log(Person.prototype.constructor); // we get the constructor function itslef => The Person Object
+
+console.dir(Person.prototype.constructor); // with dir() instead of log(), we can see the Person Object directly!
+
+// PROTOTYPE OF AN ARRAY:
+const arr = [3, 6, 4, 5, 6, 9, 3]; // new Array === []
+console.log(arr.__proto__); // we see all the methods that we had already like filter, fill, every, find, findIndex, Reduce, ...
+// THIS IS THE REASON, WHY ARRAYS GET ACCESS TO ALL OF THESE METHODS, BECAUSE EACH ARRAY DOESN'T CONTAIN ALL OF THESE METHODS, BUT INSTEAD, EACH ARRAY WILL INHERIT THESE METHODS FROM ITS PROTOTYPE!
+
+console.log(arr.__proto__ === Array.prototype); // true, Array is constructor function of an array!
+
+console.log(arr.__proto__.__proto__); // We have now the object property with all the methods which are available for object!
