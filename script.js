@@ -334,3 +334,18 @@ console.log("-------------------using Object.create------------------------");
 // If we can set the prototype to any object, let's create an object that we want to be the prototype of all the person object:
 
 // LET's us recreate the Person Object from earlier:
+const PersonProto = {
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  },
+};
+
+// Impelmenting the prototypal Inheritance but in a complete different way using Object.create()
+// create a new Object using the current PersonProto Object:
+const steven = Object.create(PersonProto);
+console.log(steven); // an empty object but with prototype which is included calcAge()
+
+// We have to fill this empty object with some properties now:
+steven.name = "Steven";
+steven.birthYear = 2002;
+steven.calcAge(); // 35
