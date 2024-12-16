@@ -289,3 +289,19 @@ console.log(account.movements); // (5) [200, 530, 120, 300, 50]
 
 // NOTE: That is how a regular Object works with setter and getter! GETTER AND SETTER WORKS EXACTLY IN THE SAME WAY IN CLASSES!
 // LET'S TRY THEM OUT IN OUR PERSON CLASS ABOVE!
+
+console.log("----------------------static Methods--------------------------");
+
+// We had already Array.from() method which convert an array-like structure to a real array!
+// For example:
+console.log(Array.from(document.querySelectorAll("h1"))); // [h1]
+
+// Array.from() and Number.parseFloat() are static Methods because they are available only on Number or Array Structure and not all the prototypes!
+
+// We can create a static method as following:
+Person.hey = function () {
+  console.log("Hey there 👋");
+};
+
+// And now call this static method!
+Person.hey();
