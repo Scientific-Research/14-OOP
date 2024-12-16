@@ -338,6 +338,12 @@ const PersonProto = {
   calcAge() {
     console.log(2037 - this.birthYear);
   },
+
+  // This will does the setting of the properties automatically for us:
+  init(firsName, birthYear) {
+    this.firstName = firsName;
+    this.birthYear = birthYear;
+  },
 };
 
 // Impelmenting the prototypal Inheritance but in a complete different way using Object.create()
@@ -349,3 +355,13 @@ console.log(steven); // an empty object but with prototype which is included cal
 steven.name = "Steven";
 steven.birthYear = 2002;
 steven.calcAge(); // 35
+
+console.log(steven.__proto__ === PersonProto); // true
+
+// Create another Person:
+const sarah = Object.create(PersonProto);
+
+// Let's do the setting the properties on this Object in a better way than what we did above:
+// This has nothing to do with what we has already in Constrctor function or constrcutor method that we had already in ES6, because we don't use the new keyword to call it!
+sarah.init("Sarah", 1979);
+sarah.calcAge(); // 58
