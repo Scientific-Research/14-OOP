@@ -365,3 +365,8 @@ const sarah = Object.create(PersonProto);
 // This has nothing to do with what we has already in Constrctor function or constrcutor method that we had already in ES6, because we don't use the new keyword to call it!
 sarah.init("Sarah", 1979);
 sarah.calcAge(); // 58
+
+// NOTE: THE BIG TAKEAWY IS THAT: THE object.create() creates a new object and the prototype of that object will be the object that we pass in.
+// In Our above example, we create a new object(Person) called sarah and the prototype of sarah object is PersonProto object that we pass in!
+
+// WE WILL USE object.create() LATER WHEN WE WANT TO IMPLEMENT TRUE CLASS INHERITANCE!
