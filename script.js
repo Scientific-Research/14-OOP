@@ -171,12 +171,29 @@ console.log("-------------------------ES6 Classes--------------------------");
 const PersonClass = class {
   // First Step: adding a Constructor method: which is similar to the Constructor function that we had already but this constructor is a method of this class and we have to write it exactly as 'constructor' word and pass into that our parameters exactly like Constructor function!
   constructor(firstName, birthYear) {
-    this.firstName = firstName;
+    this.firstName = firstName; // this keyword points to newly created empty object!
     this.birthYear = birthYear;
+  }
+
+  // Method in Constructor function() which recommended to avoid that and use Prototype instead!
+  // this.calcAge = function () {
+  //   console.log(2037 - this.birthYear);
+  // };
+
+  // Method in Class() => would be on the Prototype of the Object and not the Object itself => PROTOTYPAL INHERITANCE => exactly like what we had already for constructor function!
+  calcAge() {
+    console.log(2037 - this.birthYear);
   }
 };
 
 // Exactly like constructor Function, we have to use new keyword and make the new Object(instance)!
-
+// NOTE: When we create a new instance using new keyword, it will call the constructor and a new object is returned and will be stored in jessica
 const jessica = new PersonClass("Abdol", 1990);
-console.log(jessica);
+console.log(jessica); // PersonClass {firstName: 'Abdol', birthYear: 1990}, we had these Results before using constructor function!
+
+// CALL THE calcAge() Method:
+// console.log(jessica.firstName, jessica.birthYear); OR with backtick
+console.log(
+  `First Name: ${jessica.firstName}, BirthYear: ${jessica.birthYear}`
+); // First Name: Abdol, BirthYear: 1990
+jessica.calcAge(); // 47
