@@ -223,3 +223,25 @@ jessica.greet(); // Hey Abdol
 // 2. Like Functions, classes are also first-class citizens => it means we can pass them into a function and we can return them from a function, because classes are actually special kind of functions behind the scences!
 
 // 3. Classes are executed in strict mode! even if we didn't activated strict mode for the entire code, the code inside the body of the class are executed in strict mode!
+
+console.log("---------------Setters and Getters-----------------------------");
+
+// Every Object in JS can have Setters and Getters properties which are the normal functions which gets and sets the values as the name says but they still look like a regular properties:
+
+// const movements = [200, 530, 120, 300];
+// console.log(movements[movements.length - 1]);
+
+// We define an Object:
+const account = {
+  owner: "Jonas",
+  movements: [200, 530, 120, 300],
+
+  // To create a getter, we write a regular method and then add the get keyword at the beginning of the name of the method => This method will get the latest movement:
+  get latest() {
+    // return this.movements[this.movements.length - 1]; OR using slice() as following:
+
+    return this.movements.slice(-1).pop(); // slice() gives us an array but we want the value => that's why we use pop() to gives us the value itself!
+  },
+};
+
+console.log(account.latest); // 300 => we don't call the method, but we write it as it is a property!
