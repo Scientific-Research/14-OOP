@@ -188,6 +188,11 @@ const PersonClass = class {
   greet() {
     console.log(`Hey ${this.firstName}`);
   }
+
+  // TO ADD A GETTER FOR AGE PROPERTY => getter here is like the calcAge() method!
+  get age() {
+    return 2037 - this.birthYear;
+  }
 };
 
 // Exactly like constructor Function, we have to use new keyword and make the new Object(instance)!
@@ -201,6 +206,9 @@ console.log(
   `First Name: ${jessica.firstName}, BirthYear: ${jessica.birthYear}`
 ); // First Name: Abdol, BirthYear: 1990
 jessica.calcAge(); // 47
+
+// Try the getter:
+console.log(jessica.age); // 47
 
 console.log(jessica.__proto__ === PersonClass.prototype); // true
 
