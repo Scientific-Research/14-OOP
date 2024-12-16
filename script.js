@@ -216,3 +216,10 @@ console.log(jessica.__proto__ === PersonClass.prototype); // true
 
 jessica.greet(); // Hey Abdol
 // We had exactly already the same with Constructor Function => THIS IS ANOTHER PROVE THAT THE CLASS JUST HIDE THE TRUE NATURE OF PROTOTYPE INHERITANCE IN JS!
+
+// SOME MORE POINTS ABOUT THE CLASSES: WE HAVE TO KEEP THESE POINTS IN THE MIND WHEN WE ARE WORKING WITH THE CLASSES:
+// 1. Classes are not hoisted, even if they are class Declaration but as we know already, Function Declaration are hoisted, which means we can use them before they are declared, BUT WITH CALSSES IT DOESN'T WORK!
+
+// 2. Like Functions, classes are also first-class citizens => it means we can pass them into a function and we can return them from a function, because classes are actually special kind of functions behind the scences!
+
+// 3. Classes are executed in strict mode! even if we didn't activated strict mode for the entire code, the code inside the body of the class are executed in strict mode!
