@@ -321,3 +321,16 @@ Person.hey = function () {
 Person.hey(); // Hey there 👋
 // But this a static method and is not inherited like .from in Array.from. we can not call that too on any array! When i call the hey Method on the jonas, it will not work, because it is not in the prototype of jonas object. There is no way that jonas object can inherit it!
 // jonas.hey(); // ERROR: jonas.hey is not a function
+
+console.log("-------------------using Object.create------------------------");
+
+// We leaned till now about 1. Construction function and 2. ES6 Classes
+// BUT THERE IS ALSO A THIRD WAY TO IMPLEMENT PROTOTYPAL INHERITANCE OR DELEGATION using Object.create
+
+// NOTE: In object.create there is still the idea of Prototypal Inheritance but without 1. No Prototype property, 2. No new keyword and 3. No construction function
+
+// BUT INSTEAD WE CAN USE Object.create to manually set the prototype of an object to any other object that we want!
+
+// If we can set the prototype to any object, let's create an object that we want to be the prototype of all the person object:
+
+// LET's us recreate the Person Object from earlier:
