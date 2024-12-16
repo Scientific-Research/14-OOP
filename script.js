@@ -184,6 +184,10 @@ const PersonClass = class {
   calcAge() {
     console.log(2037 - this.birthYear);
   }
+
+  greet() {
+    console.log(`Hey ${this.firstName}`);
+  }
 };
 
 // Exactly like constructor Function, we have to use new keyword and make the new Object(instance)!
@@ -197,3 +201,18 @@ console.log(
   `First Name: ${jessica.firstName}, BirthYear: ${jessica.birthYear}`
 ); // First Name: Abdol, BirthYear: 1990
 jessica.calcAge(); // 47
+
+console.log(jessica.__proto__ === PersonClass.prototype); // true
+
+// NOTE: WHAT WE SEE HERE, IS EXACTLY WHAT WE HAD ALREADY IN CONSTRUCTOR FUNCTION, BUT WITH CLASS, IT LOOKS A LITTLE BIT NICER AND WE DON'T NEED TO MANUALLY MASS WITH PROTOTYPE PROPRTY OUTSIDE OF THE CLASS. WE WRITE THE METHOD INSIDE THE CLASS AND OUSIDE OF THE CONSTRUCTOR AND IT WILL BE ADDED AUTOMATICALLY TO THE PROTOTYPE PROPETY OF THE CLASS!
+
+// WE CAN EVEN GO FURTHER WITH THIS DEMONSTRATION => We can add a Method manually to the prototype:
+
+// NOTE: INSTEAD OF WRITING THE BELOW METHOD WITH PROTOTYPE PROPERTY, I CAN JUST WRITE IT AS A STANDALONE METHOD INSIDE THE PERSONCLASS AND OUTSIDE THE CONSTRUCTOR LIKE calcAge() AND WITHOUT comma IN BETWEEN => THAT'S WHY I COMMENT THE FOLLOWING METHOD OUT AND REWRITE IT IN THE PERSONCLASS - ANYWAY, I GET THE SAME RESULT IN BOTH CASES!
+
+// PersonClass.prototype.greet = function () {
+//   console.log(`Hey ${this.firstName}`);
+// };
+
+jessica.greet(); // Hey Abdol
+// We had exactly already the same with Constructor Function => THIS IS ANOTHER PROVE THAT THE CLASS JUST HIDE THE TRUE NATURE OF PROTOTYPE INHERITANCE IN JS!
