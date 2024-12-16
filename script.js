@@ -181,6 +181,9 @@ const PersonClass = class {
   // };
 
   // Method in Class() => would be on the Prototype of the Object and not the Object itself => PROTOTYPAL INHERITANCE => exactly like what we had already for constructor function!
+
+  // Instance methods => All the instances have access to them!
+  // Methods will be added to .prototype property
   calcAge() {
     console.log(2037 - this.birthYear);
   }
@@ -208,6 +211,13 @@ const PersonClass = class {
   get fullName() {
     return this._fullName;
   }
+
+  // creating a static method inside a class:
+  // Static methods are not available on the Instances and sometimes are still useful to implement some kind of helper function about a class or about a constructure function!
+  static hey() {
+    console.log("Hey there 👋");
+    console.log(this);
+  }
 };
 
 // Exactly like constructor Function, we have to use new keyword and make the new Object(instance)!
@@ -233,6 +243,9 @@ console.log(jessica.fullName);
 const walter2 = new PersonClass("Walter white", 1965); // I get this alert: Walter is not a full name!
 
 console.log(walter2.fullName); // Walter white
+
+// CAll the static method:
+PersonClass.hey(); // Hey there 👋 and this keyword points to the entire class!
 
 console.log(jessica.__proto__ === PersonClass.prototype); // true
 
@@ -301,6 +314,7 @@ console.log(Array.from(document.querySelectorAll("h1"))); // [h1]
 // We can create a static method as following:
 Person.hey = function () {
   console.log("Hey there 👋");
+  console.log(this); // this keyword points to the entire constructure function(Person Object) here!
 };
 
 // And now call this static method!
