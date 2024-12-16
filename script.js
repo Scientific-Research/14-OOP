@@ -304,4 +304,6 @@ Person.hey = function () {
 };
 
 // And now call this static method!
-Person.hey();
+Person.hey(); // Hey there 👋
+// But this a static method and is not inherited like .from in Array.from. we can not call that too on any array! When i call the hey Method on the jonas, it will not work, because it is not in the prototype of jonas object. There is no way that jonas object can inherit it!
+// jonas.hey(); // ERROR: jonas.hey is not a function
