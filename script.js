@@ -242,6 +242,18 @@ const account = {
 
     return this.movements.slice(-1).pop(); // slice() gives us an array but we want the value => that's why we use pop() to gives us the value itself!
   },
+
+  set latest(mov) {
+    this.movements.push(mov);
+  },
 };
 
 console.log(account.latest); // 300 => we don't call the method, but we write it as it is a property!
+
+// for a regular function, we write like this: account.latest(50); but we have setter here and we have to write like following using equal sign:
+account.latest = 50;
+
+console.log(account.movements); // (5) [200, 530, 120, 300, 50]
+
+// NOTE: That is how a regular Object works with setter and getter! GETTER AND SETTER WORKS EXACTLY IN THE SAME WAY IN CLASSES!
+// LET'S TRY THEM OUT IN OUR PERSON CLASS ABOVE!
