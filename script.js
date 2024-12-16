@@ -156,3 +156,27 @@ console.dir(h1);
 console.dir((x) => x + 1);
 
 // NOTE: WE HAVE PROTOTYPE ON THE OBJECTS AND BECAUSE OF ARRAYS AND FUNCTIONS ARE OBJECT TOO AND OBJECTS HAVE THE PROTOTYPE, THEREFOR, WE CAN CALL THE METHODS ON THE FUNCTIONS AND THE ARRAYS!
+
+console.log("-------------------------ES6 Classes--------------------------");
+
+// Let's implement Person using Class: => Classes are special Type of functions, although we use class keyword here, but behind the scences, classes are still functions, that's why like functions, we have two type of classes: class expression and class declaration:
+
+// class expression => is the same like function but without Paranthesis() and class instead of function:
+// const PersonClass = class{}
+
+// class declaration
+// class PersonClass {}
+
+// JONAS PREFER TO USE CLASS DECLARATION, BUT I PREFER TO USE FUNCTION EXPRESSION:
+const PersonClass = class {
+  // First Step: adding a Constructor method: which is similar to the Constructor function that we had already but this constructor is a method of this class and we have to write it exactly as 'constructor' word and pass into that our parameters exactly like Constructor function!
+  constructor(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  }
+};
+
+// Exactly like constructor Function, we have to use new keyword and make the new Object(instance)!
+
+const jessica = new PersonClass("Abdol", 1990);
+console.log(jessica);
