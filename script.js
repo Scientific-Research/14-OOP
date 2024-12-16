@@ -195,6 +195,9 @@ const PersonClass = class {
   }
 
   // We can create a setter for the fullname property which will check if this is a fullname or not?
+  // Every time we pass a fullName in, this fullName method will set a new name and set it to the _fullName which we later get it from getter. Getter will get the new fullName and return it to the PersonClass and it is assigned to the jessica and we can get the new fullName from jessica.fullName()
+
+  // Set a property that already exists!
   set fullName(fName) {
     fName.includes(" ")
       ? (this._fullName = fName)
@@ -208,7 +211,7 @@ const PersonClass = class {
 };
 
 // Exactly like constructor Function, we have to use new keyword and make the new Object(instance)!
-// NOTE: When we create a new instance using new keyword, it will call the constructor and a new object is returned and will be stored in jessica
+// NOTE: When we create a new instance using new keyword, it will call the constructor and a new object is returned and will be stored in jessica.
 const jessica = new PersonClass("Jessica Davis", 1990);
 console.log(jessica); // PersonClass {firstName: 'Abdol', birthYear: 1990}, we had these Results before using constructor function!
 
@@ -221,8 +224,15 @@ jessica.calcAge(); // 47
 console.log(jessica.age); // 47
 
 // Try the setter:
-jessica.fullName = "Abbas Akbari";
-console.log(jessica);
+// jessica.fullName = "Abbas"; // we get the alert message: Abbas is not a full name!
+jessica.fullName = "Abbas Akbari"; // This works and we don't get any alert message!
+console.log(jessica.fullName);
+
+// Try with new values:
+// const walter = new PersonClass("Walter", 1965); // I get this alert: Walter is not a full name!
+const walter2 = new PersonClass("Walter white", 1965); // I get this alert: Walter is not a full name!
+
+console.log(walter2.fullName); // Walter white
 
 console.log(jessica.__proto__ === PersonClass.prototype); // true
 
