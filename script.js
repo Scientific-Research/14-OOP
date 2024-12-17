@@ -370,3 +370,19 @@ sarah.calcAge(); // 58
 // In Our above example, we create a new object(Person) called sarah and the prototype of sarah object is PersonProto object that we pass in!
 
 // WE WILL USE object.create() LATER WHEN WE WANT TO IMPLEMENT TRUE CLASS INHERITANCE!
+
+console.log("--------------------Inheritance Between Classes-----------------");
+
+// Inheritance Between "Classes" using Constructor Functions
+
+// WE HAD ALREADY Constructor Function as following:
+
+const Person = function (firstName, birthYear) {
+  this.firsName = firstName;
+  this.birthYear = birthYear;
+};
+
+Person.prototype.calcAge = function () {
+  console.log(2037 - this.birthYear);
+};
+
