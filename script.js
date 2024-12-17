@@ -388,8 +388,14 @@ Person2.prototype.calcAge = function () {
 
 // Now, we create a Student Object which has some properties in common:
 const Student = function (firstName, birthYear, course) {
-  this.firsName = firstName;
-  this.birthYear = birthYear;
+  // this.firsName = firstName;
+  // this.birthYear = birthYear;
+
+  // NOTE: INSTEAD OF REPEATING THE SAME PROPERTIES HERE AS WE HAVE THEM IN Person2, WE CAN USE THE FOLLOWING:
+  // when i call the Person as following, this is calling a regular function without new keyword and in a regular function, this keyword in undefined, that's why i get an Error! TO REMOVE THIS ERROR, WE HAVE TO SET THE this KEYWORD MANUALLY! WE USE call METHOD TO CALL THIS FUNCTION AND AT THE SAME TIME, SET this KEYWORD AS THE FIRST ARGUMENT IN THIS FUNCTION!
+  // Person(firstName, birthYear);
+
+  Person.call(this, firstName, birthYear); // this keyword would be in the beginning of the emprty object which was created by the new keyword => new Student() and then firstName and birthYear properties will be set!
   this.course = course;
 };
 
@@ -403,5 +409,3 @@ const mike = new Student("Mike", 2000, "Computer Science");
 
 console.log(mike); // Student {firsName: 'Mike', birthYear: 2000, course: 'Computer Science'}
 mike.introduce(); // My name is Mike and I study Computer Science
-
-
