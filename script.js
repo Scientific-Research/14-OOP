@@ -435,3 +435,13 @@ console.log("--We make a connection between Both Person and Student Objects--");
 
 // calcAge() is not available as prototype property in Student Object but is available in Person Object and because of linking prototypes: Student.prototype = Obejct.create(Person2.prototype);between these two Objects, we can inherite the calcAge() prototype method from Person Object for Student Object. It works well and we don't need to repeat the same Code for Student Person again!
 mike.calcAge(); // 37
+
+console.log(mike.__proto__); // Person2 {introduce: ƒ}
+console.log(mike.__proto__.__proto__); // {calcAge: ƒ}
+
+console.log(mike instanceof Student); // true
+console.log(mike instanceof Person); // false
+console.log(mike instanceof Object); // true => because object is in its Prototype chain!
+
+Student.prototype.constructor = Student;
+console.dir(Student.prototype.constructor); // ƒ Person2(firstName, birthYear)
