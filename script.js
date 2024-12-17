@@ -409,3 +409,9 @@ const mike = new Student("Mike", 2000, "Computer Science");
 
 console.log(mike); // Student {firsName: 'Mike', birthYear: 2000, course: 'Computer Science'}
 mike.introduce(); // My name is Mike and I study Computer Science
+
+console.log("--We make a connection between Both Person and Student Objects--");
+
+// We create a connection manually between Student.prototype and Person.prototype using Object.create(). In this case, Student Object as Child Object can use the methods of Person Object as Parent Object!
+
+// Student.prototype = Obejct.create(Person.prototype);
