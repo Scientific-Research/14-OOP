@@ -393,9 +393,9 @@ const Student = function (firstName, birthYear, course) {
 
   // NOTE: INSTEAD OF REPEATING THE SAME PROPERTIES HERE AS WE HAVE THEM IN Person2, WE CAN USE THE FOLLOWING:
   // when i call the Person as following, this is calling a regular function without new keyword and in a regular function, this keyword in undefined, that's why i get an Error! TO REMOVE THIS ERROR, WE HAVE TO SET THE this KEYWORD MANUALLY! WE USE call METHOD TO CALL THIS FUNCTION AND AT THE SAME TIME, SET this KEYWORD AS THE FIRST ARGUMENT IN THIS FUNCTION!
-  // Person(firstName, birthYear);
+  // Person2(firstName, birthYear);
 
-  Person.call(this, firstName, birthYear); // this keyword would be in the beginning of the emprty object which was created by the new keyword => new Student() and then firstName and birthYear properties will be set!
+  Person2.call(this, firstName, birthYear); // this keyword would be in the beginning of the emprty object which was created by the new keyword => new Student() and then firstName and birthYear properties will be set!
   this.course = course;
 };
 
