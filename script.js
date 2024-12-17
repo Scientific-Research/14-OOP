@@ -399,6 +399,19 @@ const Student = function (firstName, birthYear, course) {
   this.course = course;
 };
 
+// We make a connection between Both Person and Student Objects:
+// We create a connection manually between Student.prototype and Person.prototype using Object.create(). In this case, Student Object as Child Object can use the methods of Person Object as Parent Object!
+
+// NOTE: We have to add this exactly here before we add a prototype method like introduce() to the Student!
+Student.prototype = Object.create(Person.prototype);
+// And now the Student.prototype object is an object which inherits from Person.prototype!
+
+// QUESTION: Why we have to use Object.create() and not directly do something like this:
+Student.prototype = Person.prototype; // THIS DOESN'T WORK AT ALL!
+// ANSWER: because when we use the equal sign here, it means we say the Student.prototype object must be exactly the same as Person.prototype object, but We don't want that. we want that Student.prototype inherits from Person.prototypes and not exactly be the same!
+
+// THAT'S WHY WE USE Object.create() and not directly assigning!
+
 // Add a method for Student:
 Student.prototype.introduce = function () {
   console.log(`My name is ${this.firsName} and I study ${this.course}`);
