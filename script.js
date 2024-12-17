@@ -377,12 +377,31 @@ console.log("--------------------Inheritance Between Classes-----------------");
 
 // WE HAD ALREADY Constructor Function as following:
 
-const Person = function (firstName, birthYear) {
+const Person2 = function (firstName, birthYear) {
   this.firsName = firstName;
   this.birthYear = birthYear;
 };
 
-Person.prototype.calcAge = function () {
+Person2.prototype.calcAge = function () {
   console.log(2037 - this.birthYear);
 };
+
+// Now, we create a Student Object which has some properties in common:
+const Student = function (firstName, birthYear, course) {
+  this.firsName = firstName;
+  this.birthYear = birthYear;
+  this.course = course;
+};
+
+// Add a method for Student:
+Student.prototype.introduce = function () {
+  console.log(`My name is ${this.firsName} and I study ${this.course}`);
+};
+
+// Create a new studen:
+const mike = new Student("Mike", 2000, "Computer Science");
+
+console.log(mike); // Student {firsName: 'Mike', birthYear: 2000, course: 'Computer Science'}
+mike.introduce(); // My name is Mike and I study Computer Science
+
 
