@@ -507,8 +507,11 @@ const PersonClass2 = class {
 
 // We want the following Student Class inherit from above Person Class:
 // To do that, we have to use two things:
-// 1. extends keyword which does the linking Prototype behind the scences for us
+// 1. extends keyword which does the linking Prototype behind the scences for us, without us to think about that!
 // 2. Super function
 class StudentClass2 extends PersonClass2 {
-  
+  constructor(fullName, birthYear, course) {
+    // PersonClass2.call(this, fullName, birthYear); // we don't need this here as we needed this already in constructor function, but we have to cla  the super() function instead!
+    super(fullName, birthYear);
+  }
 }
