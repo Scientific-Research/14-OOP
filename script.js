@@ -445,3 +445,70 @@ console.log(mike instanceof Object); // true => because object is in its Prototy
 
 Student.prototype.constructor = Student;
 console.dir(Student.prototype.constructor); // ƒ Person2(firstName, birthYear)
+
+console.log(
+  "DOING THE SAME BUT USING ES6 CLASSES INSTEAD OF CONSTRUCTOR FUNCTION"
+);
+
+// Inheritance between classes -- ES6 Classes!
+
+// JONAS PREFER TO USE CLASS DECLARATION, BUT I PREFER TO USE FUNCTION EXPRESSION:
+const PersonClass2 = class {
+  // First Step: adding a Constructor method: which is similar to the Constructor function that we had already but this constructor is a method of this class and we have to write it exactly as 'constructor' word and pass into that our parameters exactly like Constructor function!
+  constructor(fullName, birthYear) {
+    this.fullName = fullName; // this keyword points to newly created empty object!
+    this.birthYear = birthYear;
+  }
+
+  // Method in Constructor function() which recommended to avoid that and use Prototype instead!
+  // this.calcAge = function () {
+  //   console.log(2037 - this.birthYear);
+  // };
+
+  // Method in Class() => would be on the Prototype of the Object and not the Object itself => PROTOTYPAL INHERITANCE => exactly like what we had already for constructor function!
+
+  // Instance methods => All the instances have access to them!
+  // Methods will be added to .prototype property
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  }
+
+  greet() {
+    console.log(`Hey ${this.fullName}`);
+  }
+
+  // TO ADD A GETTER FOR AGE PROPERTY => getter here is like the calcAge() method!
+  get age() {
+    return 2037 - this.birthYear;
+  }
+
+  // We can create a setter for the fullname property which will check if this is a fullname or not?
+  // Every time we pass a fullName in, this fullName method will set a new name and set it to the _fullName which we later get it from getter. Getter will get the new fullName and return it to the PersonClass and it is assigned to the jessica and we can get the new fullName from jessica.fullName()
+
+  // Set a property that already exists!
+  set fullName(fName) {
+    fName.includes(" ")
+      ? (this._fullName = fName)
+      : alert(`${fName} is not a full name!`);
+  }
+
+  // creating the getter
+  get fullName() {
+    return this._fullName;
+  }
+
+  // creating a static method inside a class:
+  // Static methods are not available on the Instances and sometimes are still useful to implement some kind of helper function about a class or about a constructure function!
+  static hey() {
+    console.log("Hey there 👋");
+    console.log(this);
+  }
+};
+
+// We want the following Student Class inherit from above Person Class:
+// To do that, we have to use two things:
+// 1. extends keyword which does the linking Prototype behind the scences for us
+// 2. Super function
+class StudentClass2 extends PersonClass2 {
+  
+}
