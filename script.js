@@ -557,13 +557,27 @@ const PersonProto2 = {
     console.log(2037 - this.birthYear);
   },
 
-  init(firsName, birthYear) {
-    this.firsName = firsName;
+  init(firstName, birthYear) {
+    this.firstName = firstName;
     this.birthYear = birthYear;
   },
 };
 
 const steven2 = Object.create(PersonProto2); // PersonProto2 is Parent
 
-const StudentProto = Object.create(PersonProto2);
+const StudentProto = Object.create(PersonProto2); // Student inherits from Person!
+
+// Let's create an init() method for StudentProto, that all the childs comes after that like jay2 will inherit from that:
+StudentProto.init = function (firstName, birthYear, course) {
+  // Exactly what we did in constructor function using call and entering this keyword and we don't need anymore to repeat the above code again here!
+  PersonProto2.init.call(this, firstName, birthYear);
+  this.course = course;
+};
+
 const jay2 = Object.create(StudentProto); // jay2 is Child of the PersonProto2 as parent!
+
+// NOTE: In a simple words: Jay2 inherits from StudentProto and StudentProto inherits from PersonProto, That's why Jay2 object is able to use all the properties and Methods which are available in StudentProto Object and PersonProto Object!
+
+jay2.init("Jay", 2010, "Computer Science");
+console.log(jay2); // {firstName: 'Jay', birthYear: 2010, course: 'Computer Science'}
+ 
