@@ -607,6 +607,7 @@ const Account = class {
     console.log(`Thanks for opening an account, ${owner}`); // Thanks for opening an account, Jonas
   }
 
+  // Public interface
   deposit(val) {
     acc1.movements.push(val);
   }
@@ -627,6 +628,6 @@ console.log(acc1); // Account {owner: 'Jonas', currency: 'EUR', pin: 1111, move
 
 // CALL USING METHODS INSTEAD OF PROPERTIES DIRECTLY:
 acc1.deposit(250);
-acc1.withdraw(140);
+acc1.withdraw(140); // we did an abstraction here and didn't use the negative sign here =! The user doesn't need to care about that!
 
 console.log(acc1); // Account {owner: 'Jonas', currency: 'EUR', pin: 1111, movements: Array(2), locale: 'de-DE'} movements: (2) [250, -140]
