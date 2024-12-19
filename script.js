@@ -522,6 +522,17 @@ class StudentClass2 extends PersonClass2 {
   introduce() {
     console.log(`My name is ${this.fullName} and I study ${this.course}`);
   }
+
+  // Let's overwrite the CalcAge method from Parent Class here: This method will overwrite the one in Prototype Chain, in other words, is shadowing the one in Parent Class!
+  calcAge() {
+    console.log(
+      `I'm ${
+        2037 - this.birthYear
+      } years old, but as a student I feel more like ${
+        2037 - (this.birthYear - 10)
+      }`
+    );
+  }
 }
 const martha = new StudentClass2("Martha jones", 2012, "Computer Science");
 console.log(martha); // StudentClass2 {_fullName: 'Martha jones', birthYear: 2012, course: 'Computer Science'}
@@ -536,3 +547,5 @@ martha.calcAge(); // 25 // This works as well although this method is in Parent 
 
 // const martha = new StudentClass2("Martha jones", 2012);
 // console.log(martha); // StudentClass2 {_fullName: 'Martha jones', birthYear: 2012}
+
+// Let's now overwrite a method here like what we did already in Challeng-Coding Nr.3 which represents the POLYMORPHISM:
