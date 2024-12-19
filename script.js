@@ -587,3 +587,5 @@ console.log(jay2); // {firstName: 'Jay', birthYear: 2010, course: 'Computer Scie
 
 jay2.introduce(); // My name is Jay and I study Computer Science
 jay2.calcAge(); // 27 // We can call calcAge() too because that is in Prototype Chain too and it was inherited by StudentProto!
+
+// NOTE: using object.create(), we are not worry about Constructor, about Prototypes properties and also about new keyword! It is just about the object links to another obejct and the first object is the constructor function for the second object. It is really simple and beautiful!
