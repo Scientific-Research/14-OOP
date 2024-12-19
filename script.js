@@ -549,3 +549,21 @@ martha.calcAge(); // 25 // This works as well although this method is in Parent 
 // console.log(martha); // StudentClass2 {_fullName: 'Martha jones', birthYear: 2012}
 
 // Let's now overwrite a method here like what we did already in Challeng-Coding Nr.3 which represents the POLYMORPHISM:
+
+console.log("----Inheritance Between Classes using Object.create()-----");
+
+const PersonProto2 = {
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  },
+
+  init(firsName, birthYear) {
+    this.firsName = firsName;
+    this.birthYear = birthYear;
+  },
+};
+
+const steven2 = Object.create(PersonProto2); // PersonProto2 is Parent
+
+const StudentProto = Object.create(PersonProto2);
+const jay2 = Object.create(StudentProto); // jay2 is Child of the PersonProto2 as parent!
