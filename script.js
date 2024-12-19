@@ -603,11 +603,30 @@ const Account = class {
     this.movements = [];
 
     // We can add other things which are not in constructor!
-    this.locale = navigator.language;
-    console.log(`Thanks for opening an account, ${owner}`);
+    this.locale = navigator.language; // Account {owner: 'Jonas', currency: 'EUR', pin: 1111, movements: Array(0), locale: 'de-DE'}
+    console.log(`Thanks for opening an account, ${owner}`); // Thanks for opening an account, Jonas
+  }
+
+  deposit(val) {
+    acc1.movements.push(val);
+  }
+
+  withdraw(val) {
+    // acc1.movements.push(val);
+    this.deposit(-val); // we can call a method inside another method using this keyword because the statement is the same for withdrawal too, therefore, we don't need to repeat it!
   }
 };
 
 // const acc1 = new Account("Jonas", "EUR", 1111, []); // OR the BEST is following:
 const acc1 = new Account("Jonas", "EUR", 1111);
 console.log(acc1); // Account {owner: 'Jonas', currency: 'EUR', pin: 1111, movements: Array(0)}
+
+// NOTE: It would be better to create methods to deal with these properties, instead of manupulating them directly!
+// acc1.movements.push(250);
+// acc1.movements.push(-140);
+
+// CALL USING METHODS INSTEAD OF PROPERTIES DIRECTLY:
+acc1.deposit(250);
+acc1.withdraw(140);
+
+console.log(acc1); // Account {owner: 'Jonas', currency: 'EUR', pin: 1111, movements: Array(2), locale: 'de-DE'} movements: (2) [250, -140]
