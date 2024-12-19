@@ -586,3 +586,4 @@ jay2.init("Jay", 2010, "Computer Science");
 console.log(jay2); // {firstName: 'Jay', birthYear: 2010, course: 'Computer Science'}
 
 jay2.introduce(); // My name is Jay and I study Computer Science
+jay2.calcAge(); // 27 // We can call calcAge() too because that is in Prototype Chain too and it was inherited by StudentProto!
