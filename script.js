@@ -594,13 +594,20 @@ console.log("-----------A FEW MORE THINGS ABOUT CLASSES----------------------");
 
 // Let's create a new calss:
 const Account = class {
-  constructor(owner, currency, pin, movements) {
+  // constructor(owner, currency, pin, movements) { // OR the Best is following:
+  constructor(owner, currency, pin) {
     this.owner = owner;
     this.currency = currency;
     this.pin = pin;
-    this.movements = movements;
+    // this.movements = movements; // OR the Best is following:
+    this.movements = [];
+
+    // We can add other things which are not in constructor!
+    this.locale = navigator.language;
+    console.log(`Thanks for opening an account, ${owner}`);
   }
 };
 
-const acc1 = new Account("Jonas", "EUR", 1111, []);
+// const acc1 = new Account("Jonas", "EUR", 1111, []); // OR the BEST is following:
+const acc1 = new Account("Jonas", "EUR", 1111);
 console.log(acc1); // Account {owner: 'Jonas', currency: 'EUR', pin: 1111, movements: Array(0)}
