@@ -601,6 +601,7 @@ const Account = class {
     this.pin = pin;
     // this.movements = movements; // OR the Best is following:
     this.movements = [];
+    this.loanApproved = false; // New property to store approval status
 
     // We can add other things which are not in constructor!
     this.locale = navigator.language; // Account {owner: 'Jonas', currency: 'EUR', pin: 1111, movements: Array(0), locale: 'de-DE'}
@@ -616,6 +617,25 @@ const Account = class {
     // acc1.movements.push(val);
     this.deposit(-val); // we can call a method inside another method using this keyword because the statement is the same for withdrawal too, therefore, we don't need to repeat it!
   }
+
+  approveLoan(ans) {
+    if (ans === "yes") {
+      this.loanApproved = true;
+    } else {
+      this.loanApproved = false;
+    }
+    console.log(this.loanApproved);
+    return this.loanApproved;
+  }
+
+  requestLoan(val) {
+    if (this.loanApproved) {
+      this.deposit(val);
+      console.log("Loan approved!");
+    } else {
+      console.log("Loan not approved!");
+    }
+  }
 };
 
 // const acc1 = new Account("Jonas", "EUR", 1111, []); // OR the BEST is following:
@@ -626,8 +646,13 @@ console.log(acc1); // Account {owner: 'Jonas', currency: 'EUR', pin: 1111, move
 // acc1.movements.push(250);
 // acc1.movements.push(-140);
 
-// CALL USING METHODS INSTEAD OF PROPERTIES DIRECTLY:
+// USE METHODS INSTEAD OF MANUPULATING PROPERTIES DIRECTLY:
 acc1.deposit(250);
 acc1.withdraw(140); // we did an abstraction here and didn't use the negative sign here =! The user doesn't need to care about that!
+acc1.approveLoan("yes");
+acc1.requestLoan(1000);
 
 console.log(acc1); // Account {owner: 'Jonas', currency: 'EUR', pin: 1111, movements: Array(2), locale: 'de-DE'} movements: (2) [250, -140]
+
+// We are not allowed to access the PIN from outside, but at the moment, it is possible => THIS IS VERY BAD!!!
+console.log(acc1.pin); // 1111
