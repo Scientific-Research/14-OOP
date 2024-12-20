@@ -652,6 +652,11 @@ const Account = class {
     }
   }
 
+  // NOTE: Static methods are avilable on the class itself and not on the instances!
+  static helper() {
+    console.log("helper");
+  }
+
   // 4) Private methods => we can hide the implementation details from the outside and we can use them only inside the class!
   #approveLoan(ans) {
     if (ans === "yes") {
@@ -702,8 +707,11 @@ console.log("------------Encapsulation: Protected Properties and Methods-----");
 // 2) Private fields
 // 3) Public methods
 // 4) Private methods
+// (there is also the static version by simply adding the static keyword in front of it!)
 
 // console.log(acc1.#movements); // SyntaxError: Private field '#movements' must be declared in an enclosing class
 // NOTE: movements fields are not accessible from outside of the class now!
 
 // console.log(acc1.#pin); // SyntaxError: Private field '#pin' must be declared in an enclosing class
+
+Account.helper(); // helper -- This is for static helper() method
