@@ -629,6 +629,8 @@ const Account = class {
   }
 
   requestLoan(val) {
+    // NOTE: when i use what Jonas added here, I have to use the second argument(ans) here and I don't want that! Therefore, I use the loanApproved property instead of the second argument!
+    // if(this.approveLoan(ans)) {
     if (this.loanApproved) {
       this.deposit(val);
       console.log("Loan approved!");
