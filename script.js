@@ -598,9 +598,11 @@ const Account = class {
   constructor(owner, currency, pin) {
     this.owner = owner;
     this.currency = currency;
-    this.pin = pin;
+    this._pin = pin;
     // this.movements = movements; // OR the Best is following:
-    this.movements = [];
+    // this.movements = [];
+    // We fake the encapsulation here using an underline => It called protected property!
+    this._movements = [];
     this.loanApproved = false; // New property to store approval status
 
     // We can add other things which are not in constructor!
@@ -609,8 +611,13 @@ const Account = class {
   }
 
   // Public interface
+  // We can also create a getter for the movements property, but we keep is simple as following
+  getMovements() {
+    return this._movements;
+  }
+
   deposit(val) {
-    acc1.movements.push(val);
+    acc1._movements.push(val);
   }
 
   withdraw(val) {
@@ -618,7 +625,7 @@ const Account = class {
     this.deposit(-val); // we can call a method inside another method using this keyword because the statement is the same for withdrawal too, therefore, we don't need to repeat it!
   }
 
-  approveLoan(ans) {
+  _approveLoan(ans) {
     if (ans === "yes") {
       this.loanApproved = true;
     } else {
@@ -645,16 +652,22 @@ const acc1 = new Account("Jonas", "EUR", 1111);
 console.log(acc1); // Account {owner: 'Jonas', currency: 'EUR', pin: 1111, movements: Array(0)}
 
 // NOTE: It would be better to create methods to deal with these properties, instead of manupulating them directly!
-// acc1.movements.push(250);
-// acc1.movements.push(-140);
+
+// acc1._movements.push(250);
+// acc1._movements.push(-140);
 
 // USE METHODS INSTEAD OF MANUPULATING PROPERTIES DIRECTLY:
 acc1.deposit(250);
 acc1.withdraw(140); // we did an abstraction here and didn't use the negative sign here =! The user doesn't need to care about that!
 acc1.approveLoan("yes");
 acc1.requestLoan(1000);
+console.log(acc1.getMovements()); // (3) [250, -140, 1000]
 
 console.log(acc1); // Account {owner: 'Jonas', currency: 'EUR', pin: 1111, movements: Array(2), locale: 'de-DE'} movements: (2) [250, -140]
 
 // We are not allowed to access the PIN from outside, but at the moment, it is possible => THIS IS VERY BAD!!!
 console.log(acc1.pin); // 1111
+
+console.log("------------Encapsulation: Protected Properties and Methods-----");
+
+// Encapsulations means to keep some properties and methods private inside the class, so they are not accessible from outside of the class!
