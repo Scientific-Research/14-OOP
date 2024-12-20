@@ -633,12 +633,15 @@ const Account = class {
   }
 
   deposit(val) {
-    acc1.#movements.push(val);
+    // acc1.#movements.push(val); OR
+    this.#movements.push(val);
+    return this; // this is the current object => we return this keyword to make the method chain
   }
 
   withdraw(val) {
     // acc1.movements.push(val);
     this.deposit(-val); // we can call a method inside another method using this keyword because the statement is the same for withdrawal too, therefore, we don't need to repeat it!
+    return this; // this is the current object => we return this keyword to make the method chain
   }
 
   requestLoan(val) {
@@ -647,6 +650,7 @@ const Account = class {
     if (this.loanApproved) {
       this.deposit(val);
       console.log("Loan approved!");
+      return this; // this is the current object => we return this keyword to make the method chain
     } else {
       console.log("Loan not approved!");
     }
@@ -715,3 +719,11 @@ console.log("------------Encapsulation: Protected Properties and Methods-----");
 // console.log(acc1.#pin); // SyntaxError: Private field '#pin' must be declared in an enclosing class
 
 Account.helper(); // helper -- This is for static helper() method
+
+console.log("-----------------Chaining Methods-------------------");
+
+// Chaining:
+acc1.deposit(300).deposit(500).withdraw(35).requestLoan(25000).withdraw(4000);
+
+console.log(acc1.getMovements()); // (8) [250, -140, 1000, 300, 500, -35, 25000, -4000]
+// NOTE: this keyword points to the current object in different methods above like deposit, withdraw and requestLoan and we use this keyword to set the value to this keyword and make the method chainable!
