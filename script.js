@@ -594,9 +594,11 @@ console.log("-----------A FEW MORE THINGS ABOUT CLASSES----------------------");
 
 // Let's create a new calss:
 const Account = class {
-  // How to define the Public field => we can define it outside of the constructor and it will be available on all instances and also without using const or let keyword!
+  // 1) Public fields => we can define it outside of the constructor and it will be available on all instances and also without using const or let keyword!
   locale = navigator.language;
-  _movements = [];
+
+  // 2) Private fields: are not accessible from outside of the class => we can define it using #(hash) symbol before the name of the property!
+  #movements = [];
 
   // constructor(owner, currency, pin, movements) { // OR the Best is following:
   constructor(owner, currency, pin) {
@@ -619,11 +621,10 @@ const Account = class {
   // Public interface
   // We can also create a getter for the movements property, but we keep is simple as following
   getMovements() {
-    return this._movements;
+    return this.#movements;
   }
-
   deposit(val) {
-    acc1._movements.push(val);
+    acc1.#movements.push(val);
   }
 
   withdraw(val) {
@@ -678,7 +679,10 @@ console.log("------------Encapsulation: Protected Properties and Methods-----");
 
 // Encapsulations means to keep some properties and methods private inside the class, so they are not accessible from outside of the class!
 
-// Public fields
-// Private fields
-// Public methods
-// Private methods
+// 1) Public fields
+// 2) Private fields
+// 3) Public methods
+// 4) Private methods
+
+// console.log(acc1.#movements); // SyntaxError: Private field '#movements' must be declared in an enclosing class
+// NOTE: movements fields are not accessible from outside of the class now!
