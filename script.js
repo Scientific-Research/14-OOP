@@ -594,17 +594,18 @@ console.log("-----------A FEW MORE THINGS ABOUT CLASSES----------------------");
 
 // Let's create a new calss:
 const Account = class {
-  // 1) Public fields => we can define it outside of the constructor and it will be available on all instances and also without using const or let keyword!
+  // 1) Public fields(instances) => we can define it outside of the constructor and it will be available on all instances and also without using const or let keyword!
   locale = navigator.language;
 
-  // 2) Private fields: are not accessible from outside of the class => we can define it using #(hash) symbol before the name of the property!
+  // 2) Private fields(available on instances and not prototypes): are not accessible from outside of the class => we can define it using #(hash) symbol before the name of the property!
   #movements = [];
+  #pin;
 
   // constructor(owner, currency, pin, movements) { // OR the Best is following:
   constructor(owner, currency, pin) {
     this.owner = owner;
     this.currency = currency;
-    this._pin = pin;
+    this.#pin = pin;
     this.loanApproved = false; // New property to store approval status
 
     // NOTE: I define the following two properties as Public fields above, therefore, I don't need to define them here in the constructor anymore!
@@ -620,9 +621,16 @@ const Account = class {
 
   // Public interface
   // We can also create a getter for the movements property, but we keep is simple as following
+  // NOTE: THIS IS HOW TO GET ACCESS TO A PRIVATE FIELD FROM OUTSIDE OF THE CLASS:
   getMovements() {
     return this.#movements;
   }
+
+  // NOTE: THIS IS HOW TO GET ACCESS TO A PRIVATE FIELD FROM OUTSIDE OF THE CLASS:
+  getPin() {
+    return this.#pin;
+  }
+
   deposit(val) {
     acc1.#movements.push(val);
   }
@@ -668,12 +676,15 @@ acc1.deposit(250);
 acc1.withdraw(140); // we did an abstraction here and didn't use the negative sign here =! The user doesn't need to care about that!
 acc1._approveLoan("yes");
 acc1.requestLoan(1000);
+
+// NOTE: WE CAN'T ACCESS TO THE PRIVATE FIELDS FROM OUTSIDE OF THE CLASS, BUT WE CAN GET ACCESS TO THEM USING THE get METHODS THAT WE CREATED INSIDE THE CLASS AS FOLLOWING:
 console.log(acc1.getMovements()); // (3) [250, -140, 1000]
+console.log(acc1.getPin()); // 1111
 
 console.log(acc1); // Account {owner: 'Jonas', currency: 'EUR', pin: 1111, movements: Array(2), locale: 'de-DE'} movements: (2) [250, -140]
 
 // We are not allowed to access the PIN from outside, but at the moment, it is possible => THIS IS VERY BAD!!!
-console.log(acc1._pin); // 1111
+// console.log(acc1.#pin); // 1111
 
 console.log("------------Encapsulation: Protected Properties and Methods-----");
 
@@ -686,3 +697,5 @@ console.log("------------Encapsulation: Protected Properties and Methods-----");
 
 // console.log(acc1.#movements); // SyntaxError: Private field '#movements' must be declared in an enclosing class
 // NOTE: movements fields are not accessible from outside of the class now!
+
+// console.log(acc1.#pin); // SyntaxError: Private field '#pin' must be declared in an enclosing class
