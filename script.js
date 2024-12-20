@@ -620,6 +620,7 @@ const Account = class {
   }
 
   // Public interface
+  // 3) Public methods
   // We can also create a getter for the movements property, but we keep is simple as following
   // NOTE: THIS IS HOW TO GET ACCESS TO A PRIVATE FIELD FROM OUTSIDE OF THE CLASS:
   getMovements() {
@@ -640,16 +641,6 @@ const Account = class {
     this.deposit(-val); // we can call a method inside another method using this keyword because the statement is the same for withdrawal too, therefore, we don't need to repeat it!
   }
 
-  _approveLoan(ans) {
-    if (ans === "yes") {
-      this.loanApproved = true;
-    } else {
-      this.loanApproved = false;
-    }
-    console.log(this.loanApproved);
-    return this.loanApproved;
-  }
-
   requestLoan(val) {
     // NOTE: when i use what Jonas added here, I have to use the second argument(ans) here and I don't want that! Therefore, I use the loanApproved property instead of the second argument!
     // if(this.approveLoan(ans)) {
@@ -659,6 +650,23 @@ const Account = class {
     } else {
       console.log("Loan not approved!");
     }
+  }
+
+  // 4) Private methods => we can hide the implementation details from the outside and we can use them only inside the class!
+  #approveLoan(ans) {
+    if (ans === "yes") {
+      this.loanApproved = true;
+    } else {
+      this.loanApproved = false;
+    }
+    console.log(this.loanApproved);
+    return this.loanApproved;
+  }
+
+  // NOTE: How can i access to a private method from outside of the class?
+  // Public method to access the private method
+  getLoanApproval(ans) {
+    return this.#approveLoan(ans);
   }
 };
 
@@ -674,13 +682,13 @@ console.log(acc1); // Account {owner: 'Jonas', currency: 'EUR', pin: 1111, move
 // USE METHODS INSTEAD OF MANUPULATING PROPERTIES DIRECTLY:
 acc1.deposit(250);
 acc1.withdraw(140); // we did an abstraction here and didn't use the negative sign here =! The user doesn't need to care about that!
-acc1._approveLoan("yes");
-acc1.requestLoan(1000);
 
 // NOTE: WE CAN'T ACCESS TO THE PRIVATE FIELDS FROM OUTSIDE OF THE CLASS, BUT WE CAN GET ACCESS TO THEM USING THE get METHODS THAT WE CREATED INSIDE THE CLASS AS FOLLOWING:
 console.log(acc1.getMovements()); // (3) [250, -140, 1000]
 console.log(acc1.getPin()); // 1111
+acc1.getLoanApproval("yes"); // Loan approved!
 
+acc1.requestLoan(1000);
 console.log(acc1); // Account {owner: 'Jonas', currency: 'EUR', pin: 1111, movements: Array(2), locale: 'de-DE'} movements: (2) [250, -140]
 
 // We are not allowed to access the PIN from outside, but at the moment, it is possible => THIS IS VERY BAD!!!
