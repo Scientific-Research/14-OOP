@@ -594,19 +594,25 @@ console.log("-----------A FEW MORE THINGS ABOUT CLASSES----------------------");
 
 // Let's create a new calss:
 const Account = class {
+  // How to define the Public field => we can define it outside of the constructor and it will be available on all instances and also without using const or let keyword!
+  locale = navigator.language;
+  _movements = [];
+
   // constructor(owner, currency, pin, movements) { // OR the Best is following:
   constructor(owner, currency, pin) {
     this.owner = owner;
     this.currency = currency;
     this._pin = pin;
+    this.loanApproved = false; // New property to store approval status
+
+    // NOTE: I define the following two properties as Public fields above, therefore, I don't need to define them here in the constructor anymore!
     // this.movements = movements; // OR the Best is following:
     // this.movements = [];
     // We fake the encapsulation here using an underline => It called protected property!
-    this._movements = [];
-    this.loanApproved = false; // New property to store approval status
+    // this._movements = [];
 
     // We can add other things which are not in constructor!
-    this.locale = navigator.language; // Account {owner: 'Jonas', currency: 'EUR', pin: 1111, movements: Array(0), locale: 'de-DE'}
+    // this.locale = navigator.language; // Account {owner: 'Jonas', currency: 'EUR', pin: 1111, movements: Array(0), locale: 'de-DE'}
     console.log(`Thanks for opening an account, ${owner}`); // Thanks for opening an account, Jonas
   }
 
@@ -671,3 +677,8 @@ console.log(acc1._pin); // 1111
 console.log("------------Encapsulation: Protected Properties and Methods-----");
 
 // Encapsulations means to keep some properties and methods private inside the class, so they are not accessible from outside of the class!
+
+// Public fields
+// Private fields
+// Public methods
+// Private methods
